@@ -20,5 +20,23 @@ module.exports = {
     // Provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
+  },
+
+  devServer: {
+  	// open: true,
+  	// host: 'localhost',
+  	// port: 8080,
+  	// https: false,
+  	proxy: {
+  		'/api': {
+  			target: 'http://127.0.0.1:1087/',
+  			// 允许跨域
+  			changeOrigin: true,
+  			ws: true,
+  			pathRewrite: {
+  				'^/api': ''
+  			}
+  		}
+  	}
   }
 }
